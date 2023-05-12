@@ -23,6 +23,14 @@
         opacity: 0.4;
       }
     </style>
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
   </head>
   <body>
     <h1>Woman in tech</h1>
@@ -30,7 +38,15 @@
 
     <script>
       const $app = document.getElementById("app");
-      const Avatar = (params) => {
+      const h = React.createElement;
+
+      const Avatar = params => {
+        const src = `https://picsum.photos/seed/${params.id}/200/300`;
+
+        return h('img', {src})
+      }
+      
+      /* const Avatar = (params) => {
         const src = `https://picsum.photos/seed/${params.id}/200/300`;
         return `<picture>
           <img src="${src}" />
@@ -46,7 +62,8 @@
         img.addEventListener("click", () => {
           img.classList.toggle("disabled");
         });
-      });
+      }); 
+      */
     </script>
   </body>
 </html>
