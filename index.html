@@ -44,35 +44,26 @@
       const Avatar = (params) => {
         const src = `https://picsum.photos/seed/${params.id}/200/300`;
 
-        return h("img", { src });
-        // return <img src={src} />;
+        //return h("img", { src });
+        return (
+          <picture>
+            <img
+              onClick={(event) => {
+                event.target.classList.toggle("disabled");
+              }}
+              src={src} />
+            <strong>{params.name}</strong>
+          </picture>
+        );
       };
 
       ReactDOM.render(
-        h("div", null, [
-          h(Avatar, { id: 1 }, null),
-          h(Avatar, { id: 2 }, null)
-        ]),
+        <div>
+          <Avatar id={12} name="testy" />
+          <Avatar id={22} name="asdadsa" />
+        </div>,
         $app
       );
-      /* const Avatar = (params) => {
-        const src = `https://picsum.photos/seed/${params.id}/200/300`;
-        return `<picture>
-          <img src="${src}" />
-          <strong>${params.name}</strong>
-         </picture>
-          `;
-      };
-
-      $app.innerHTML += Avatar({ id: "sda", name: "ARTISTICO" });
-      $app.innerHTML += Avatar({ id: 3, name: "Fantastico" });
-
-      $app.querySelectorAll("img").forEach((img) => {
-        img.addEventListener("click", () => {
-          img.classList.toggle("disabled");
-        });
-      }); 
-      */
     </script>
   </body>
 </html>
