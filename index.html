@@ -67,7 +67,7 @@
           pictureClassName = "is-large";
         }
 
-        const imgClassName = enabled ? "disabled" : "";
+        const imgClassName = enabled ? "" : "disabled";
 
         return (
           <picture className={pictureClassName}> 
@@ -81,16 +81,38 @@
                 <i>Not found</i>
               )
             }
-            <strong>{name}</strong>            
+            <strong>{enabled ? name : "Desactivada"}</strong>            
           </picture>
         );
       };
+      function Contador () {
+        const [contador, setContador] = useState(10);
+        const [numeroDeVeces, setNumeroDeVeces] = useState(0);
+
+        return (
+          <div>
+            <button onClick={() => {
+              setContador(contador + 1)
+              setNumeroDeVeces(numeroDeVeces + 1)
+            }}>+</button>
+            <span>{contador}</span>
+            <button onClick={() => {
+              setContador(contador - 1)
+              setNumeroDeVeces(numeroDeVeces + 1)
+            }}>-</button>
+
+            <p>Veces usado {numeroDeVeces}</p>
+          </div> 
+        )
+      }
 
       ReactDOM.render(
         <div>
           <Avatar name="testy" size="large" />
           <Avatar id={22} />
           <Avatar id={21431} name="teststtt" size="small" />
+
+          <Contador />
         </div>,
         $app
       );
