@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Static template</title>
+    <style>
+      picture {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        max-width: 100px;
+      }
+      img {
+        box-shadow: 0 0 25px #888;
+        border-radius: 50%;
+        height: 100px;
+        object-fit: cover;
+      }
+
+      img.disabled {
+        opacity: 0.4;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Woman in tech</h1>
+    <div id="app"></div>
+
+    <script>
+      const $app = document.getElementById("app");
+      const Avatar = (params) => {
+        const src = `https://picsum.photos/seed/${params.id}/200/300`;
+        return `<picture>
+          <img src="${src}" />
+          <strong>${params.name}</strong>
+         </picture>
+          `;
+      };
+
+      $app.innerHTML += Avatar({ id: "sda", name: "ARTISTICO" });
+      $app.innerHTML += Avatar({ id: 3, name: "Fantastico" });
+
+      $app.querySelectorAll("img").forEach((img) => {
+        img.addEventListener("click", () => {
+          img.classList.toggle("disabled");
+        });
+      });
+    </script>
+  </body>
+</html>
