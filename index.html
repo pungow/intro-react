@@ -12,10 +12,15 @@
         text-align: center;
         max-width: 100px;
       }
+      picture.is-small {
+        max-width: 50px;
+      }
+      picture.is-large {
+        max-width: 150px;
+      }
       img {
         box-shadow: 0 0 25px #888;
         border-radius: 50%;
-        height: 100px;
         object-fit: cover;
       }
 
@@ -41,18 +46,27 @@
       const $app = document.getElementById("app");
       const useState = React.useState;
 
-      const Avatar = props => {
+      const Avatar = (props) => {
         const [enabled, setEnabled] = useState(true);
 
-        const src = `https://picsum.photos/seed/${props.id}/200/300`;
-        const imgClassName = enabled ? 'disabled' : '';
+        const src = `https://picsum.photos/seed/${props.id}/200/200`;
+
+        let pictureClassName = "";
+        if (props.size === "small") {
+          pictureClassName = "is-small";
+        } else if (props.size === "large") {
+          pictureClassName = "is-large";
+        }
+
+        const imgClassName = enabled ? "disabled" : "";
 
         return (
-          <picture>
+          <picture className={pictureClassName}>
             <img
               onClick={() => setEnabled(!enabled)}
               className={imgClassName}
-              src={src} />
+              src={src}
+            />
             <strong>{props.name}</strong>
           </picture>
         );
@@ -60,8 +74,9 @@
 
       ReactDOM.render(
         <div>
-          <Avatar id={12} name="testy" />
+          <Avatar id={12} name="testy" size="large" />
           <Avatar id={22} name="asdadsa" />
+          <Avatar id={21431} name="teststtt" size="small" />
         </div>,
         $app
       );
