@@ -39,20 +39,21 @@
 
     <script type="text/babel">
       const $app = document.getElementById("app");
-      const h = React.createElement;
+      const useState = React.useState;
 
-      const Avatar = (params) => {
-        const src = `https://picsum.photos/seed/${params.id}/200/300`;
+      const Avatar = props => {
+        const [enabled, setEnabled] = useState(true);
 
-        //return h("img", { src });
+        const src = `https://picsum.photos/seed/${props.id}/200/300`;
+        const imgClassName = enabled ? 'disabled' : '';
+
         return (
           <picture>
             <img
-              onClick={(event) => {
-                event.target.classList.toggle("disabled");
-              }}
+              onClick={() => setEnabled(!enabled)}
+              className={imgClassName}
               src={src} />
-            <strong>{params.name}</strong>
+            <strong>{props.name}</strong>
           </picture>
         );
       };
