@@ -31,24 +31,30 @@
       src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
       crossorigin
     ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
   </head>
   <body>
     <h1>Woman in tech</h1>
     <div id="app"></div>
 
-    <script>
+    <script type="text/babel">
       const $app = document.getElementById("app");
       const h = React.createElement;
 
-      const Avatar = params => {
+      const Avatar = (params) => {
         const src = `https://picsum.photos/seed/${params.id}/200/300`;
 
-        return h('img', {src})
-      }
-      
+        return h("img", { src });
+        // return <img src={src} />;
+      };
+
       ReactDOM.render(
-        h(Avatar, {id: 1}), $app
-      )
+        h("div", null, [
+          h(Avatar, { id: 1 }, null),
+          h(Avatar, { id: 2 }, null)
+        ]),
+        $app
+      );
       /* const Avatar = (params) => {
         const src = `https://picsum.photos/seed/${params.id}/200/300`;
         return `<picture>
