@@ -46,6 +46,9 @@
         return h('img', {src})
       }
       
+      ReactDOM.render(
+        h(Avatar, {id: 1}), $app
+      )
       /* const Avatar = (params) => {
         const src = `https://picsum.photos/seed/${params.id}/200/300`;
         return `<picture>
